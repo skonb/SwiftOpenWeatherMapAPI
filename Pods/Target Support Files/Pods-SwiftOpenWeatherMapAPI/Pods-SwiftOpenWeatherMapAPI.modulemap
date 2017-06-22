@@ -1,0 +1,6 @@
+framework module Pods_SwiftOpenWeatherMapAPI {
+  umbrella header "Pods-SwiftOpenWeatherMapAPI-umbrella.h"
+
+  export *
+  module * { export * }
+}
