@@ -45,7 +45,7 @@ class ViewController: UIViewController {
                 self.cityNameLabel.text = json["name"].stringValue
                 self.currentWeather = Weather(json: json)
                 break
-            case .Error(let errorMessage):
+            case .error(let errorMessage):
                 self.showErrorAlert(errorMessage)
                 break
             }
@@ -58,7 +58,7 @@ class ViewController: UIViewController {
                 self.weatherList = json["list"].array!.map() { Weather(json: $0) }
                 break
                 
-            case .Error(let errorMessage):
+            case .error(let errorMessage):
                 self.showErrorAlert(errorMessage)
                 break
                 
@@ -76,14 +76,14 @@ class ViewController: UIViewController {
 // MARK - UITableViewDataSource
 extension ViewController: UITableViewDataSource {
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return weatherList.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let weather = weatherList[indexPath.row]
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("tableCell", forIndexPath: indexPath) 
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) 
         cell.textLabel?.text = weather.description + " " + weather.temperature + " C"
         cell.detailTextLabel?.text = weather.dateTime
         
@@ -92,9 +92,9 @@ extension ViewController: UITableViewDataSource {
 }
 
 extension ViewController {
-    private func showErrorAlert(errorMessage: String) {
-        let alertController = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .Alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
-        self.presentViewController(alertController, animated: true, completion: nil)
+    fileprivate func showErrorAlert(_ errorMessage: String) {
+        let alertController = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
 }
