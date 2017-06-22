@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "SwiftOpenWeatherMapAPI"
-  s.version      = "0.0.8"
+  s.version      = "0.0.9"
   s.summary      = "Swift Open Weather Map API is a wrapper around http://openweathermap.org."
 
   s.homepage     = "http://github.com/filippotosetto/SwiftOpenWeatherMapAPI"
@@ -17,8 +17,8 @@ Pod::Spec.new do |s|
   s.source     = { :git => "https://github.com/filippotosetto/SwiftOpenWeatherMapAPI.git", :tag => s.version }
   s.source_files = "API/*.swift"
 
-  s.dependency 'Alamofire', '~> 2.0'
-  s.dependency 'SwiftyJSON', '~> 2.3.0'
+  s.dependency 'Alamofire'
+  s.dependency 'SwiftyJSON'
 
   s.requires_arc = true
 
